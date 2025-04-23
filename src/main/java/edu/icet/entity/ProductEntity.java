@@ -1,5 +1,6 @@
-package edu.icet.dto;
+package edu.icet.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @Setter
@@ -7,11 +8,15 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Product {
+@Entity
+@Table(name="product")
+public class ProductEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer productId;
     private String name;
     private String description;
     private Integer forSale;
-
+    
 }
