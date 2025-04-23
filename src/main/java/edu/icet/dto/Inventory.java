@@ -7,8 +7,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class User {
+public class Inventory {
     private Long id;
-    private String name;
-    private String email;
+    private Long itemId;
+    private Long productId;
+    private Integer quantity;
+
 }
