@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
 
     @Override
-    public boolean createUser(User user) {
+    public boolean create(User user) {
         if (user != null) {
             userRepository.save(modelMapper.map(user, UserEntity.class));
             return true;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User searchUserById(Long id) {
+    public User searchById(Long id) {
         if (id != null) {
             return modelMapper.map(userRepository.findById(id), User.class);
         } else {
@@ -38,15 +38,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean update(User user) {
         if (user != null) {
-            return this.createUser(user);
+            return this.create(user);
         }
         return false;
     }
 
     @Override
-    public boolean deleteUser(Long id) {
+    public Boolean delete(Long id) {
         if (id != null) {
             userRepository.deleteById(id);
         }
