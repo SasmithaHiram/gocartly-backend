@@ -1,7 +1,7 @@
 package edu.icet.controller;
 
-import edu.icet.dto.Inventory;
-import edu.icet.service.InventoryService;
+import edu.icet.dto.Product;
+import edu.icet.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/inventory")
+@RequestMapping("/product")
 @RequiredArgsConstructor
 @CrossOrigin
-public class InventoryController {
-    private final InventoryService inventoryService;
+public class ProductController {
+    private final ProductService productService;
 
     @PostMapping("create")
-    public ResponseEntity<String> create(@RequestBody Inventory inventory) {
-        boolean isSaved = inventoryService.create(inventory);
+    public ResponseEntity<String> create(@RequestBody Product product) {
+        boolean isSaved = productService.create(product);
 
         if (isSaved) {
             return ResponseEntity.status(HttpStatus.CREATED).body("PRODUCT SAVED SUCCESSFULLY");
@@ -27,18 +27,18 @@ public class InventoryController {
     }
 
     @GetMapping("/searchById/{id}")
-    public ResponseEntity<Inventory> searchById(@PathVariable Long id) {
-        Inventory inventory = inventoryService.searchById(id);
+    public ResponseEntity<Product> searchById(@PathVariable Long id) {
+        Product product = productService.searchById(id);
 
-        if (inventory != null) {
+        if (product != null) {
             return ResponseEntity.status(HttpStatus.FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> update(@RequestBody Inventory inventory) {
-        boolean isUpdated = inventoryService.update(inventory);
+    public ResponseEntity<String> update(@RequestBody Product product) {
+        boolean isUpdated = productService.update(product);
 
         if (isUpdated) {
             return ResponseEntity.status(HttpStatus.OK).body("PRODUCT UPDATED SUCCESSFULLY");
@@ -48,7 +48,7 @@ public class InventoryController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-        Boolean isDeleted = inventoryService.delete(id);
+        Boolean isDeleted = productService.delete(id);
 
         if (isDeleted) {
             return ResponseEntity.ok(true);
@@ -57,8 +57,8 @@ public class InventoryController {
     }
 
     @GetMapping("get-all")
-    public ResponseEntity<List<Inventory>> getAll() {
-        List<Inventory> all = inventoryService.getAll();
+    public ResponseEntity<List<Product>> getAll() {
+        List<Product> all = productService.getAll();
         return ResponseEntity.ok(all);
     }
 

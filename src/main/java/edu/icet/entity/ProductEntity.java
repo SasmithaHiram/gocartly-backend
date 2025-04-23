@@ -9,13 +9,15 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name="inventory")
-public class InventoryEntity {
+@Table(name="product")
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long itemId;
-    private Long productId;
-    private Integer quantity;
-
+    private Integer productId;
+    private String name;
+    private String description;
+    private String image;
+    private Integer forSale;
+    
 }
