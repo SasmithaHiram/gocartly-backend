@@ -1,0 +1,19 @@
+Index: src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server:\r\n  port: 8081\r\n\r\nspring:\r\n  datasource:\r\n    url: jdbc:mysql://localhost:3306/product?createDatabaseIfNotExist=true\r\n    username: root\r\n    password: 1234\r\n\r\n  jpa:\r\n    hibernate:\r\n      ddl-auto: create\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/application.yml b/src/main/resources/application.yml
+--- a/src/main/resources/application.yml	(revision ba2f7e3ca34c551778428bbb2d8b9d444a2f19e7)
++++ b/src/main/resources/application.yml	(date 1745414782633)
+@@ -3,7 +3,7 @@
+ 
+ spring:
+   datasource:
+-    url: jdbc:mysql://localhost:3306/product?createDatabaseIfNotExist=true
++    url: jdbc:mysql://localhost:3306/fgf?createDatabaseIfNotExist=true
+     username: root
+     password: 1234
+ 
