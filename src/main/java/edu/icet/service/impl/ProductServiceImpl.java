@@ -4,17 +4,23 @@ import edu.icet.dto.Product;
 import edu.icet.entity.ProductEntity;
 import edu.icet.repository.ProductReposiotry;
 import edu.icet.service.ProductService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ProductServiceImpl implements ProductService {
     private final ProductReposiotry productReposiotry;
     private final ModelMapper modelMapper;
+    private final RestTemplate restTemplate;
 
     @Override
     public boolean create(Product product) {
@@ -53,8 +59,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return productReposiotry.findAll().stream().map(productEntity ->
-                modelMapper.map(productEntity, Product.class)).toList();
+        Product[] response = restTemplate.getForObject("https://fakestoreapi.com/products", Product[].class);
+
+        List<ProductEntity> productReposiotryAll = productReposiotry.findAll();
+
+        List<Product> mergedproducts = new ArrayList<>();
+
+        if (response!=null) {
+            mergedproducts.addAll(Arrays.asList(response));
+        }
+
+        for (ProductEntity productEntity: productReposiotryAll) {
+            Product mapped = modelMapper.map(productEntity, Product.class);
+            mergedproducts.add(mapped);
+        }
+        return mergedproducts;
     }
-    
+
 }

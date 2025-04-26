@@ -31,7 +31,7 @@ public class ProductController {
         Product product = productService.searchById(id);
 
         if (product != null) {
-            return ResponseEntity.status(HttpStatus.FOUND).build();
+            return ResponseEntity.status(HttpStatus.OK).build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
@@ -57,9 +57,9 @@ public class ProductController {
     }
 
     @GetMapping("get-all")
-    public ResponseEntity<List<Product>> getAll() {
-        List<Product> all = productService.getAll();
-        return ResponseEntity.ok(all);
+    List<Product> getProducts() {
+        return productService.getAll();
+
     }
 
 }
