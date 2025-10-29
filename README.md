@@ -16,7 +16,7 @@ A full-featured e-commerce backend REST API built with Spring Boot 3.4.3, JPA/Hi
 
 ## Technology Stack
 
-- **Java 17**
+- **Java 23**
 - **Spring Boot 3.4.3**
 - **Spring Data JPA**
 - **MySQL**
@@ -26,7 +26,7 @@ A full-featured e-commerce backend REST API built with Spring Boot 3.4.3, JPA/Hi
 
 ## Prerequisites
 
-- Java 17 or higher
+- Java 23 or higher
 - Maven 3.9+
 - MySQL 8.0+
 
